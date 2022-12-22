@@ -18,6 +18,14 @@ Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva div
 Aggiungere il "ciclo infinito" del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
 */
 
+
+// Prendo il carousel 
+const carousel = document.getElementById('carousel');
+const gallery = document.getElementById('gallery');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+
+// Array di oggetti
 const data = [
   {
     image: 'img/01.webp',
@@ -41,3 +49,11 @@ const data = [
     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
   }
 ];
+
+for (let i = 0; i < data.length; i++) {
+    let singleCard =  data[i];
+
+    const signleCarElement = `
+
+    `
+}
