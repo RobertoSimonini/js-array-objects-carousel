@@ -55,22 +55,37 @@ const data = [
 for (let i = 0; i < data.length; i++){
     let currentData = data[i];
 
-    const currentDataElement = 
+    const currentCard = 
     `
-        <img src="${currentData.image}"> 
+        <img src="${currentData.image}">
+        <h3>${currentData.title}</h3>
+        <p>
+           ${currentData.text} 
+        </p>   
     `
-    gallery.innerHTML += currentDataElement;
+    gallery.innerHTML += currentCard;
 }
-
-
+// Creo tutte le costanti per poi creare il carosello 
 const images = document.querySelectorAll('#gallery img')
-let currentActiveIndex = 0;
-images[currentActiveIndex].classList.add ('active');
+const titles = document.querySelectorAll('#gallery h3')
+const paragraphs = document.querySelectorAll('#gallery p')
 
- next.addEventListener ('click', function(){
+// Creo l'index di incremento e decremento 
+let currentActiveIndex = 0;
+
+// Aggiungo la classe active in partenza
+images[currentActiveIndex].classList.add ('active');
+titles[currentActiveIndex].classList.add ('active');
+paragraphs[currentActiveIndex].classList.add ('active');
+
+
+// Creo la funzione che mi permetta di andare avanti 
+next.addEventListener ('click', function(){
 
     // Rimuovo la classe active 
     images[currentActiveIndex].classList.remove ('active');
+    titles[currentActiveIndex].classList.remove ('active');
+    paragraphs[currentActiveIndex].classList.remove ('active');
 
     //Incremento per fargli cambiare immagine
      currentActiveIndex++
@@ -81,4 +96,27 @@ images[currentActiveIndex].classList.add ('active');
 
     //Assegno la classe active alla foto successiva
      images[currentActiveIndex].classList.add ('active');
- })
+     titles[currentActiveIndex].classList.add ('active');
+     paragraphs[currentActiveIndex].classList.add ('active');
+})
+
+// Creo la funzione che mi permetta di andare indietro 
+prev.addEventListener ('click', function(){
+
+    // Rimuovo la classe active 
+    images[currentActiveIndex].classList.remove ('active');
+    titles[currentActiveIndex].classList.remove ('active');
+    paragraphs[currentActiveIndex].classList.remove ('active');
+
+    //Incremento per fargli cambiare immagine
+     currentActiveIndex--
+
+    if (currentActiveIndex < 0) {
+         currentActiveIndex = 4;
+    }
+
+    //Assegno la classe active alla foto successiva
+     images[currentActiveIndex].classList.add ('active');
+     titles[currentActiveIndex].classList.add ('active');
+     paragraphs[currentActiveIndex].classList.add ('active');
+})
