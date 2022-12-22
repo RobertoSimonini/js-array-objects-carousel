@@ -55,6 +55,17 @@ const data = [
   }
 ];
 
+for (let i = 0; i < data.length; i++){
+    let currentData = data[i];
+
+    const currentDataElement = 
+    `
+        <h2> ${currentData.title} </h2>
+        <p> ${currentData.text} </p>
+    `
+    console.log(currentDataElement);
+}
+
 
 next.addEventListener ('click', function(){
 
