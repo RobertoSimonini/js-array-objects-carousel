@@ -73,3 +73,21 @@ next.addEventListener ('click', function(){
 
 })
 
+prev.addEventListener ('click', function(){
+
+    // Rimuovo la classe active 
+    images[currentActiveIndex].classList.remove ('active');
+
+    // Incremento per fargli cambiare immagine
+    currentActiveIndex--
+
+    if (currentActiveIndex < 0) {
+        currentActiveIndex = 4;
+    }
+
+    // Assegno la classe active alla foto successiva
+    images[currentActiveIndex].classList.add ('active');
+
+})
+
+
