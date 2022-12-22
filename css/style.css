@@ -3,7 +3,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
+
 
 body {
     padding-top: 200px;
@@ -36,8 +38,9 @@ body {
 }
 
 h3 {
+    font-size: 40px;
     position: absolute;
-    color: white;
+    color: rgb(255, 255, 255);
     display: block; 
     right: 50px;
     bottom: 50px;
@@ -51,6 +54,7 @@ p {
     right: 50px;
     bottom: 15px;
     display: none;
+    font-weight: bold;
 }
 
 #gallery h3.active {
@@ -69,12 +73,15 @@ p {
 
 #prev, #next {
     font-size: 50px;
-    color: orangered;
+    color: gray;
     cursor: pointer;
 
     position: absolute;
     top: 50%;  
     transform: translate(-50%);
+    text-shadow: 0 0 5px black;
+
+    transition: color 0.5s, font-size 0.5s;
 }
 
 #prev {
@@ -83,4 +90,9 @@ p {
 
 #next {
     left: 105%;
+}
+
+#prev:hover, #next:hover {
+    color: dodgerblue;
+    font-size: 60px;
 }

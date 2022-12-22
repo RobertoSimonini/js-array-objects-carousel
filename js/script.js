@@ -92,7 +92,7 @@ next.addEventListener ('click', function(){
 
     if (currentActiveIndex === data.length) {
          currentActiveIndex = 0;
-     }
+    }
 
     //Assegno la classe active alla foto successiva
      images[currentActiveIndex].classList.add ('active');
