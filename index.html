@@ -9,11 +9,31 @@
     <!-- Script  -->
     <script defer src="js/script.js"></script>
 
+    <!-- Fontawesome  -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' integrity='sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==' crossorigin='anonymous'/>
     <!-- Style  -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
-    
+<body>  
+    <div class="container">
+        <div id="carousel">
+            <!-- Metto la freccia per andare indietro nel carousel  -->
+            <i id="prev" class="fa-solid fa-circle-arrow-left"></i>
+
+            <!-- Qui metto il container delle immagini  -->
+            <div id="gallery">
+                <img src="img/01.webp" alt="" class="active">
+                <img src="img/02.webp" alt="">
+                <img src="img/03.webp" alt="">
+                <img src="img/04.webp" alt="">
+                <img src="img/05.webp" alt="">
+            </div>
+
+            <!-- Qui metto la freccia per andare avanti nel carousel  -->
+            <i id="next" class="fa-solid fa-circle-arrow-right"></i>
+
+        </div>
+    </div>
 </body>
 </html>
