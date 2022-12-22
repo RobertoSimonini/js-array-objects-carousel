@@ -54,6 +54,7 @@ for (let i = 0; i < data.length; i++) {
     let singleCard =  data[i];
 
     const signleCarElement = `
-
+    <img class ="active" src="img/${i}.webp" alt="">
     `
+    gallery.innerHTML += signleCarElement;
 }
