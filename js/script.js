@@ -25,10 +25,7 @@ const gallery = document.getElementById('gallery');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 
-const images = document.querySelectorAll('#gallery img')
 
-let currentActiveIndex = 0;
-images[currentActiveIndex].classList.add ('active');
 
 // Array di oggetti
 const data = [
@@ -60,45 +57,28 @@ for (let i = 0; i < data.length; i++){
 
     const currentDataElement = 
     `
-        <h2> ${currentData.title} </h2>
-        <p> ${currentData.text} </p>
+        <img src="${currentData.image}"> 
     `
-    console.log(currentDataElement);
+    gallery.innerHTML += currentDataElement;
 }
 
 
-next.addEventListener ('click', function(){
+const images = document.querySelectorAll('#gallery img')
+let currentActiveIndex = 0;
+images[currentActiveIndex].classList.add ('active');
+
+ next.addEventListener ('click', function(){
 
     // Rimuovo la classe active 
     images[currentActiveIndex].classList.remove ('active');
 
-    // Incremento per fargli cambiare immagine
-    currentActiveIndex++
+    //Incremento per fargli cambiare immagine
+     currentActiveIndex++
 
     if (currentActiveIndex === data.length) {
-        currentActiveIndex = 0;
-    }
+         currentActiveIndex = 0;
+     }
 
-    // Assegno la classe active alla foto successiva
-    images[currentActiveIndex].classList.add ('active');
-
-})
-
-prev.addEventListener ('click', function(){
-
-    // Rimuovo la classe active 
-    images[currentActiveIndex].classList.remove ('active');
-
-    // Incremento per fargli cambiare immagine
-    currentActiveIndex--
-
-    if (currentActiveIndex < 0) {
-        currentActiveIndex = 4;
-    }
-
-    // Assegno la classe active alla foto successiva
-    images[currentActiveIndex].classList.add ('active');
-
-})
-
-
+    //Assegno la classe active alla foto successiva
+     images[currentActiveIndex].classList.add ('active');
+ })
