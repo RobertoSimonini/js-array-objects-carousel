@@ -22,6 +22,7 @@ Aggiungere il "ciclo infinito" del carosello. Ovvero se la miniatura attiva è l
 // Prendo il carousel 
 const carousel = document.getElementById('carousel');
 const gallery = document.getElementById('gallery');
+const thumbnails = document.getElementById('thumbnails');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 
@@ -63,7 +64,14 @@ for (let i = 0; i < data.length; i++){
            ${currentData.text} 
         </p>   
     `
+
+    const thumb =
+    `
+    <img src="${currentData.image}"> 
+    `
+
     gallery.innerHTML += currentCard;
+    thumbnails.innerHTML += thumb;
 }
 // Creo tutte le costanti per poi creare il carosello 
 const images = document.querySelectorAll('#gallery img')

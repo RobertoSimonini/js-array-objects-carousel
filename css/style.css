@@ -8,7 +8,7 @@
 
 
 body {
-    padding-top: 200px;
+    padding-top: 50px;
 }
 
 .container{
@@ -23,6 +23,7 @@ body {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    margin-bottom: 75px;
 }
 
 #gallery {
@@ -45,6 +46,7 @@ h3 {
     right: 50px;
     bottom: 50px;
     display: none;
+    text-shadow: 0 0 30px black;
 }
 
 p {
@@ -55,6 +57,7 @@ p {
     bottom: 15px;
     display: none;
     font-weight: bold;
+    text-shadow: 0 0 30px black;
 }
 
 #gallery h3.active {
@@ -73,7 +76,7 @@ p {
 
 #prev, #next {
     font-size: 50px;
-    color: gray;
+    color: black;
     cursor: pointer;
 
     position: absolute;
@@ -96,3 +99,29 @@ p {
     color: dodgerblue;
     font-size: 60px;
 }
+
+/* - THUMBNAILS */
+
+#thumbnails {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#thumbnails img {
+    width: 18%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    transition: transform 0.25s;
+}
+
+#thumbnails img:hover {
+    cursor: pointer;
+    box-shadow: 0 0 15px black;
+    transform: translateY(-30px);
+}
+
+
