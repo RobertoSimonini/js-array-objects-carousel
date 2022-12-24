@@ -77,6 +77,7 @@ for (let i = 0; i < data.length; i++){
 const images = document.querySelectorAll('#gallery img')
 const titles = document.querySelectorAll('#gallery h3')
 const paragraphs = document.querySelectorAll('#gallery p')
+const thumbs = document.querySelectorAll('#thumbnails img')
 
 // Creo l'index di incremento e decremento 
 let currentActiveIndex = 0;
@@ -85,46 +86,67 @@ let currentActiveIndex = 0;
 images[currentActiveIndex].classList.add ('active');
 titles[currentActiveIndex].classList.add ('active');
 paragraphs[currentActiveIndex].classList.add ('active');
+thumbs[currentActiveIndex].classList.add ('active');
 
 
-// Creo la funzione che mi permetta di andare avanti 
-next.addEventListener ('click', function(){
+// Creo un'unica funzione per poter switchare card 
+function changeCard (target) {
 
-    // Rimuovo la classe active 
-    images[currentActiveIndex].classList.remove ('active');
-    titles[currentActiveIndex].classList.remove ('active');
-    paragraphs[currentActiveIndex].classList.remove ('active');
+  // Rimuovo la classe active 
+  images[currentActiveIndex].classList.remove ('active');
+  titles[currentActiveIndex].classList.remove ('active');
+  paragraphs[currentActiveIndex].classList.remove ('active');
+  thumbs[currentActiveIndex].classList.remove ('active');
+
+  if (target === 'next') {
 
     //Incremento per fargli cambiare immagine
-     currentActiveIndex++
+    currentActiveIndex++
 
+    // - Infinite loop 
     if (currentActiveIndex === data.length) {
          currentActiveIndex = 0;
     }
 
-    //Assegno la classe active alla foto successiva
-     images[currentActiveIndex].classList.add ('active');
-     titles[currentActiveIndex].classList.add ('active');
-     paragraphs[currentActiveIndex].classList.add ('active');
-})
+  } else if (target === 'prev') {
 
-// Creo la funzione che mi permetta di andare indietro 
-prev.addEventListener ('click', function(){
+    //Decremento per fargli cambiare immagine
+    currentActiveIndex--
 
-    // Rimuovo la classe active 
-    images[currentActiveIndex].classList.remove ('active');
-    titles[currentActiveIndex].classList.remove ('active');
-    paragraphs[currentActiveIndex].classList.remove ('active');
-
-    //Incremento per fargli cambiare immagine
-     currentActiveIndex--
-
+    // -  Validation
     if (currentActiveIndex < 0) {
-         currentActiveIndex = 4;
+      currentActiveIndex = 4;
     }
+  } else {
+    currentActiveIndex = target;
+  };
 
-    //Assegno la classe active alla foto successiva
-     images[currentActiveIndex].classList.add ('active');
-     titles[currentActiveIndex].classList.add ('active');
-     paragraphs[currentActiveIndex].classList.add ('active');
-})
+  // Assegno la classe active col nuovo indice
+    images[currentActiveIndex].classList.add ('active');
+    titles[currentActiveIndex].classList.add ('active');
+    paragraphs[currentActiveIndex].classList.add ('active');
+    thumbs[currentActiveIndex].classList.add ('active');
+    
+
+}
+
+next.addEventListener ('click', function (){
+  changeCard ('next');
+});
+
+prev.addEventListener ('click', function (){
+  changeCard ('prev');
+});
+
+// Creo il cilo per la logica delle thumbs
+for (let i = 0; i < thumbs.length; i++) {
+
+  const thumb = thumbs[i];
+
+  thumb.addEventListener ('click', function(){
+
+    changeCard(i);
+
+  });
+
+} 
