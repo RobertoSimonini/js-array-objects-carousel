@@ -56,6 +56,15 @@ const app = Vue.createApp({
       ],
       
     }
+  },
+  computed: {
+   prevInfinite() {
+      
+      if (this.currentIndex < 0) {
+         this.currentIndex === 4;
+      }
+      return
+   }
   }
 });
 

@@ -127,6 +127,10 @@ object-position: right;
     transition: transform 0.25s, filter 0.25s;
 }
 
+#thumbnails img.active {
+    filter: grayscale(0);
+}
+
 #thumbnails :nth-child(3){
     object-position: right;
 }

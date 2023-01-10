@@ -35,7 +35,7 @@
         </div>
 
         <div id="thumbnails">
-            <img v-for="pic in pictures" :src="pic.image" :alt="pic.title">
+            <img v-for="(pic, i) in pictures" :src="pic.image" :alt="pic.title" :class="{'active': i === currentIndex}">
         </div>
     </div>
 </body>
