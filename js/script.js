@@ -1,152 +1,66 @@
 
+
 /*
-    Consegna:
-Dato un array di oggetti letterali con:
- - url dell’immagine
- - titolo
- - descrizione
-Creare un carosello come ispirandovi alla foto allegata. Se volete cambiare la grafica siete liberi di farlo.
+   Descrizione:
+   !Partendo dal markup della versione svolta in js plain, rifare lo slider ma questa volta usando Vue.
 
-# MILESTONE 0:
-Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
+   Vi ricordo le funzionalità minime
+   Deve vedersi un'immagine grande che è l'immagine principale
+   Devono vedersi i thumbnails
+   Il thumbnails che corrisponde all'immagine grande deve essere graficamente messo in risalto con una classe active
+   Deve essere possibile cambiare l'immagine principale con le freccette prev e next
+   Bisogna fare in modo che il carosello sia "infinito": se clicco sul next e sono all'ultima immagine, ricomincio dalla prima; se sono alla prima immagine e clicco sul prev vado all'ultima.
 
-# MILESTONE 1:
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile assieme al suo titolo e testo.
+   #Bonus:
+   -1 al click su una thumb, visualizzare in grande l'immagine corrispondente
 
-# MILESTONE 2:
-Aggiungere il "ciclo infinito" del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
+   -2 applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente
+
+   -3 quando il mouse va in hover sullo slider, bloccare l'autoplay e farlo riprendere quando esce
+
 */
 
 
-// Prendo il carousel 
-const carousel = document.getElementById('carousel');
-const gallery = document.getElementById('gallery');
-const thumbnails = document.getElementById('thumbnails');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
+// Creo l'app di VUe 
+const app = Vue.createApp({
 
-
-
-// Array di oggetti
-const data = [
-  {
-    image: 'img/0.webp',
-    title: 'Marvel\'s Spiderman Miles Morale',
-    text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
-  }, {
-    image: 'img/1.webp',
-    title: 'Ratchet & Clank: Rift Apart',
-    text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
-  }, {
-    image: 'img/2.webp',
-    title: 'Fortnite',
-    text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
-  }, {
-    image: 'img/3.webp',
-    title: 'Stray',
-    text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
-  }, {
-    image: 'img/4.webp',
-    title: "Marvel's Avengers",
-    text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+  data() {
+    return {
+      currentIndex: 0,
+      pictures: [
+        {
+         image: 'img/0.webp',
+         title: 'Marvel\'s Spiderman Miles Morale',
+         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+      }, 
+      {
+         image: 'img/1.webp',
+         title: 'Ratchet & Clank: Rift Apart',
+         text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+      }, 
+      {
+         image: 'img/2.webp',
+         title: 'Fortnite',
+         text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+      }, 
+      {
+         image: 'img/3.webp',
+         title: 'Stray',
+         text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+      }, 
+      {
+         image: 'img/4.webp',
+         title: "Marvel's Avengers",
+         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+      }
+      ],
+      
+    }
   }
-];
-
-for (let i = 0; i < data.length; i++){
-    let currentData = data[i];
-
-    const currentCard = 
-    `
-        <img src="${currentData.image}">
-        <h3>${currentData.title}</h3>
-        <p>
-           ${currentData.text} 
-        </p>   
-    `
-
-    const thumb =
-    `
-    <img src="${currentData.image}"> 
-    `
-
-    gallery.innerHTML += currentCard;
-    thumbnails.innerHTML += thumb;
-}
-// Creo tutte le costanti per poi creare il carosello 
-const images = document.querySelectorAll('#gallery img')
-const titles = document.querySelectorAll('#gallery h3')
-const paragraphs = document.querySelectorAll('#gallery p')
-const thumbs = document.querySelectorAll('#thumbnails img')
-
-// Creo l'index di incremento e decremento 
-let currentActiveIndex = 0;
-
-// Aggiungo la classe active in partenza
-images[currentActiveIndex].classList.add ('active');
-titles[currentActiveIndex].classList.add ('active');
-paragraphs[currentActiveIndex].classList.add ('active');
-thumbs[currentActiveIndex].classList.add ('active');
-
-
-// Creo un'unica funzione per poter switchare card 
-function changeCard (target) {
-
-  // Rimuovo la classe active 
-  images[currentActiveIndex].classList.remove ('active');
-  titles[currentActiveIndex].classList.remove ('active');
-  paragraphs[currentActiveIndex].classList.remove ('active');
-  thumbs[currentActiveIndex].classList.remove ('active');
-
-  if (target === 'next') {
-
-    //Incremento per fargli cambiare immagine
-    currentActiveIndex++
-
-    // - Infinite loop 
-    if (currentActiveIndex === data.length) {
-         currentActiveIndex = 0;
-    }
-
-  } else if (target === 'prev') {
-
-    //Decremento per fargli cambiare immagine
-    currentActiveIndex--
-
-    // -  Validation
-    if (currentActiveIndex < 0) {
-      currentActiveIndex = 4;
-    }
-  } else {
-    currentActiveIndex = target;
-  };
-
-  // Assegno la classe active col nuovo indice
-    images[currentActiveIndex].classList.add ('active');
-    titles[currentActiveIndex].classList.add ('active');
-    paragraphs[currentActiveIndex].classList.add ('active');
-    thumbs[currentActiveIndex].classList.add ('active');
-    
-
-}
-
-next.addEventListener ('click', function (){
-  changeCard ('next');
 });
 
-prev.addEventListener ('click', function (){
-  changeCard ('prev');
-});
+// Monto l'app di Vue 
+app.mount('#root');
 
-// Creo il cilo per la logica delle thumbs
-for (let i = 0; i < thumbs.length; i++) {
 
-  const thumb = thumbs[i];
 
-  thumb.addEventListener ('click', function(){
-
-    changeCard(i);
-
-  });
-
-} 
