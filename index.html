@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel</title>
+    <title>Vue Slider</title>
 
     <!-- Script  -->
     <script defer src="js/script.js"></script>
@@ -22,7 +22,7 @@
     <div class="container" id="root">
         <div id="carousel">
             <!-- Metto la freccia per andare indietro nel carousel  -->
-            <i id="prev" @click="currentIndex--, prevInfinite()" class="fa-solid fa-circle-arrow-left"></i>
+            <i id="prev" @click="currentIndex--, prevInfinite" class="fa-solid fa-circle-arrow-left"></i>
 
             <!-- Qui metto il container delle immagini  -->
             <div id="gallery">
@@ -30,12 +30,12 @@
             </div>
 
             <!-- Qui metto la freccia per andare avanti nel carousel  -->
-            <i id="next" @click="currentIndex++, nextInfinite()" class="fa-solid fa-circle-arrow-right" v-if="!nextInfite"></i>
+            <i id="next" @click="currentIndex++, nextInfinite" class="fa-solid fa-circle-arrow-right" v-if="!nextInfite"></i>
 
         </div>
 
         <div id="thumbnails">
-            <img v-for="(pic, i) in pictures" :src="pic.image" :alt="pic.title" :class="{'active': i === currentIndex}">
+            <img v-for="(pic, i) in pictures" @click="currentIndex[i]" :src="pic.image" :alt="pic.title" :class="{'active': i === currentIndex}">
         </div>
     </div>
 </body>
