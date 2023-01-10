@@ -63,6 +63,7 @@ const app = Vue.createApp({
          return this.currentIndex = this.pictures.length - 1;
       }
    },
+   
    nextInfinite() {
       if (this.currentIndex === this.pictures.length) {
          return this.currentIndex = 0;

@@ -27,7 +27,19 @@
             <!-- Qui metto il container delle immagini  -->
             <div id="gallery">
                 <img v-for="(pic, i) in pictures" :src="pic.image" :alt="pic.title" v-show="currentIndex === i">
+
+                <!-- Qui inserisco i titoli delle relative imgs  -->
+                <h3 v-for="(pic, i) in pictures" :class="{'active': i === currentIndex}">
+                    {{pic.title}}
+                </h3>
+
+                <!-- Qui inserisco i paragrafi delle relative imgs  -->
+                <p v-for="(pic, i) in pictures" :class="{'active': i === currentIndex}">
+                    {{pic.text}}
+                </p>
             </div>
+
+           
 
             <!-- Qui metto la freccia per andare avanti nel carousel  -->
             <i id="next" @click="currentIndex++, nextInfinite" class="fa-solid fa-circle-arrow-right" v-if="!nextInfite"></i>
@@ -35,7 +47,7 @@
         </div>
 
         <div id="thumbnails">
-            <img v-for="(pic, i) in pictures" @click="currentIndex[i]" :src="pic.image" :alt="pic.title" :class="{'active': i === currentIndex}">
+            <img v-for="(pic, i) in pictures" @click="i = currentIndex[i]" :src="pic.image" :alt="pic.title" :class="{'active': i === currentIndex}">
         </div>
     </div>
 </body>
